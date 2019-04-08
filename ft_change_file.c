@@ -35,6 +35,8 @@ void	chch(char *s1)
 		write(fd, s2, strlen(s2));
 		close(fd);
 	}
+	bzero(s2, BUF);
+	bzero(s4, BUF);
 	free(s2);
 	free(s4);
 }
