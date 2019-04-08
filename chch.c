@@ -24,15 +24,16 @@ void	chch(char *s1)
 	s4 = (char*)malloc(sizeof(char) * BUF);
 	fd = open(s1, O_RDWR);
 	read(fd, s2, BUF);
-	lseek(fd, 0, 0);
+	close(fd);
 	s3 = strstr(s2, id);
 	if (!(s3 == NULL))
 	{
+		fd = open(s1, O_RDWR|O_TRUNC);
 		s4 = strcpy(s4, s3 + strlen(id));
 		s3 = strcpy(s3, new);
 		s2 = strcat(s2, s4);
-		fd = open(s1, O_RDWR|O_TRUNC);
 		write(fd, s2, strlen(s2));
+		close(fd);
 	}
 	free(s2);
 	free(s4);
